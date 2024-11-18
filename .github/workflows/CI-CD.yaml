@@ -23,6 +23,9 @@ jobs:
           echo "${{ secrets.ENV }}" > ./.env
         shell: bash
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Build Project
         run: npm run build
 
