@@ -1,0 +1,5 @@
+.username {
+    color: rgba(0, 0, 0, 0.54); /* text-black-54 */
+    font-weight: 600; /* font-semibold */
+    font-size: 0.875rem; /* text-sm */
+}
