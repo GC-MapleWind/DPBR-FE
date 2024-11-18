@@ -66,5 +66,7 @@ jobs:
             fi
             
             sudo docker rm $(sudo docker ps --filter 'status=exited' -a -q) 
-            sudo docker run -d --name dpbr -p 3000:3000 --net ${{secrets.DOCKER_NETWORK}} ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
+            sudo docker run -d --name dpbrfe -p 3000:3000 --net ${{secrets.DOCKER_NETWORK}} \
+                ${{secrets.ENV}}
+                ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
             sudo docker image prune -a -f
