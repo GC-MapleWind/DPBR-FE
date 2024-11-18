@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Create .env file
+        run: |
+          touch .env
+          echo ${{ secrets.ENV }} >> .env
 
       - name: Build Project
         run: npm run build
@@ -67,6 +69,6 @@ jobs:
             
             sudo docker rm $(sudo docker ps --filter 'status=exited' -a -q) 
             sudo docker run -d --name dpbrfe -p 3000:3000 --net ${{secrets.DOCKER_NETWORK}} \
-                ${{secrets.ENV}}
+                --env-file .env \
                 ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
             sudo docker image prune -a -f
