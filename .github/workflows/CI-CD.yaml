@@ -1,0 +1,70 @@
+name: dpbr Dev Client CI/CD Workflows
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Docker Image Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: false
+          tags: ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_ACCESS_TOKEN}}
+
+      - name: Docker Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
+
+      - name: Docker Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ubuntu
+          key: ${{secrets.PEM_KEY}}
+          script: |
+            sudo docker pull ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
+            
+            EXISTING_CONTAINER_ID=$(sudo docker ps -q -f "publish=3000" -f "status=running")
+            if [ ! -z "$EXISTING_CONTAINER_ID" ]; then
+              sudo docker stop $EXISTING_CONTAINER_ID
+              sudo docker rm $EXISTING_CONTAINER_ID
+            fi
+
+            EXISTING_CONTAINER_ID=$(sudo docker ps -q -f "publish=3000" -f "status=exited")
+            if [ ! -z "$EXISTING_CONTAINER_ID" ]; then
+              sudo docker rm $EXISTING_CONTAINER_ID
+            fi
+            
+            sudo docker rm $(sudo docker ps --filter 'status=exited' -a -q) 
+            sudo docker run -d --name dpbr -p 3000:3000 --net ${{secrets.DOCKER_NETWORK}} ${{secrets.DOCKER_USERNAME}}/dpbrfe:latest
+            sudo docker image prune -a -f
