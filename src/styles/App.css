@@ -59,7 +59,12 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('../../public/footer.svg') no-repeat center center;
+    background: #F7F9FA;
     background-size: cover;
-    height: 150px; /* footer 높이를 적절히 설정하세요 */
+    height: 100px; /* footer 높이를 적절히 설정하세요 */
+}
+
+.footer img {
+    width: 130px; /* 원하는 너비로 설정 */
+    height: auto; /* 비율을 유지하면서 높이를 자동으로 설정 */
 }
