@@ -16,3 +16,17 @@ ul {
     height: 100%;
 }
 
+.navItem a {
+    color: inherit; /* li의 색상을 상속받음 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.navItem a:hover {
+    color: #FF6D6A; /* 호버 상태에서 색상 변경 */
+}
+
+li {
+    color: rgba(0, 0, 0, 0.54); /* text-black-54 */
+    font-weight: 600; /* font-semibold */
+    font-size: 1.3rem; /* text-sm */
+}

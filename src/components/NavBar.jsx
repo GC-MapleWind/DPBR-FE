@@ -21,10 +21,11 @@ const NavBar = () => {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/"><img src="../../public/logo.svg" alt="홈 아이콘" className={styles.logo}/></Link></li>
-                    <li><Link to="/ranking">랭킹</Link></li>
-                    <li><Link to="/statistics">통계</Link></li>
-                    <li><Link to="/profile">내 정보</Link></li>
+                    <li className={styles.navItem}><Link to="/"><img src="../../public/logo.svg" alt="홈 아이콘"
+                                                                     className={styles.logo}/></Link></li>
+                    <li className={styles.navItem}><Link to="/ranking">랭킹</Link></li>
+                    <li className={styles.navItem}><Link to="/statistics">통계</Link></li>
+                    <li className={styles.navItem}><Link to="/profile">내 정보</Link></li>
                     <li style={{marginLeft: 'auto'}}>
                         <input type="text" placeholder="검색"/>
                     </li>
