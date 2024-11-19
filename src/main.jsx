@@ -5,6 +5,7 @@ import {GoogleOAuthProvider} from '@react-oauth/google';
 import App from './components/App';
 import HomePage from './pages/HomePage';
 import {useAuth} from './hooks/useAuth';
+import './style.css';
 
 const Callback = () => {
     const [searchParams] = useSearchParams();
@@ -32,6 +33,10 @@ function Main() {
                     <Route path="callback" element={<Callback/>}/>
                 </Route>
             </Routes>
+            <div>main</div>
+            <footer className="footer">
+                <img src="../public/footer.svg" alt="Footer Image"/>
+            </footer>
         </BrowserRouter>
     );
 }

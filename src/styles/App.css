@@ -54,3 +54,12 @@ h1 {
 main {
   padding: 1rem;
 }
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../../public/footer.svg') no-repeat center center;
+    background-size: cover;
+    height: 150px; /* footer 높이를 적절히 설정하세요 */
+}
