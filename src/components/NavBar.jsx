@@ -32,11 +32,11 @@ const NavBar = () => {
                         {username ? (
                             <div style={{display: 'flex', alignItems: 'center'}}>
                                 <span className={styles.username}>{username}님</span>
-                                &nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <LogoutButton onClick={handleLogout}/>
                             </div>
                         ) : (
-                            <GoogleButton onClick={login} name="Google"/>
+                            <GoogleButton onClick={() => login()} name="Google"/>
                         )}
                     </li>
                 </ul>

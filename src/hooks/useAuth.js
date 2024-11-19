@@ -1,40 +1,48 @@
-import { useState } from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 export const useAuth = () => {
-  const [username, setUsername] = useState(localStorage.getItem('username'));
+    const [username, setUsername] = useState(localStorage.getItem('username'));
 
-  const handleLogin = (newUsername) => {
-    setUsername(newUsername);
-  };
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('username');
-    localStorage.removeItem('session');
-    setUsername(null);
-  };
+    const handleLogin = (newUsername) => {
+        setUsername(newUsername);
+    };
 
-  const handleCallback = async (code) => {
-    try {
-      const backendResponse = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/login?code=${code}`);
-      const { accessToken, refreshToken, username, session } = backendResponse.data;
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('username');
+        localStorage.removeItem('session');
+        setUsername(null);
+    };
 
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      localStorage.setItem('session', session);
+    const handleCallback = async (code) => {
+        try {
+            const backendResponse = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/login?code=${code}`);
+            const {accessToken, refreshToken, username, session} = backendResponse.data;
 
-      setUsername(username);
-    } catch (error) {
-      console.error('Error sending code to backend:', error);
-    }
-  };
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('username', username);
+            localStorage.setItem('session', session);
 
-  return {
-    username,
-    handleLogin,
-    handleLogout,
-    handleCallback,
-  };
+            setUsername(username);
+        } catch (error) {
+            console.error('Error sending code to backend:', error);
+        }
+    };
+
+    return {
+        username,
+        handleLogin,
+        handleLogout,
+        handleCallback,
+    };
 };
