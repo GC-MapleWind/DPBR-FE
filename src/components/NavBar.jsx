@@ -21,7 +21,7 @@ const NavBar = () => {
         <header>
             <nav>
                 <ul>
-                    <li className={styles.navItem}><Link to="/"><img src="../../public/logo.svg" alt="홈 아이콘"
+                    <li className={styles.navItem}><Link to="/"><img src="/logo.svg" alt="홈 아이콘"
                                                                      className={styles.logo}/></Link></li>
                     <li className={styles.navItem}><Link to="/ranking">랭킹</Link></li>
                     <li>
