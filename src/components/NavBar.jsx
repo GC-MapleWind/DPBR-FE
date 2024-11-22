@@ -24,11 +24,6 @@ const NavBar = () => {
                     <li className={styles.navItem}><Link to="/"><img src="../../public/logo.svg" alt="홈 아이콘"
                                                                      className={styles.logo}/></Link></li>
                     <li className={styles.navItem}><Link to="/ranking">랭킹</Link></li>
-                    <li className={styles.navItem}><Link to="/statistics">통계</Link></li>
-                    <li className={styles.navItem}><Link to="/profile">내 정보</Link></li>
-                    <li style={{marginLeft: 'auto'}}>
-                        <input type="text" placeholder="검색"/>
-                    </li>
                     <li>
                         {username ? (
                             <div style={{display: 'flex', alignItems: 'center'}}>
