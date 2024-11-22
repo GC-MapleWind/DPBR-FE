@@ -36,6 +36,7 @@ export const useAuth = () => {
             setUsername(username);
         } catch (error) {
             console.error('Error sending code to backend:', error);
+            alert(`${error.response.data.message}`);
         }
     };
 
