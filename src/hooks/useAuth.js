@@ -21,6 +21,7 @@ export const useAuth = () => {
         localStorage.removeItem('username');
         localStorage.removeItem('session');
         setUsername(null);
+        window.location.reload();
     };
 
     const handleCallback = async (code) => {
@@ -34,6 +35,7 @@ export const useAuth = () => {
             localStorage.setItem('session', session);
 
             setUsername(username);
+            window.location.reload();
         } catch (error) {
             console.error('Error sending code to backend:', error);
             alert(`${error.response.data.message}`);
