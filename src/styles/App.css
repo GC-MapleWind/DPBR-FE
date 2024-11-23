@@ -68,7 +68,7 @@ main {
     align-items: center;
     background: #F7F9FA;
     background-size: cover;
-    height: 100px;
+    min-height: 130px;
 }
 
 .footer img {
