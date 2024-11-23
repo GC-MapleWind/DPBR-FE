@@ -84,7 +84,7 @@ function HomePage() {
                                     {character.world}
                                 </div>
                                 <div>유니온 Lv. {character.unionLevel}</div>
-                                <div>전투력: {character.combatPower}</div>
+                                <div>전투력: {character.combatPower?.toLocaleString() || 0}</div>
                             </div>
                         </div>
                     </div>
