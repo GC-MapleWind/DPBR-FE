@@ -7,6 +7,7 @@ import MyPage from "./pages/MyPage.jsx";
 import HomePage from './pages/HomePage';
 import './style.css';
 import CharacterPage from "./pages/CharacterPage.jsx";
+import RankingPage from "./pages/RankingPage.jsx";
 
 function Main() {
     return (
@@ -14,7 +15,7 @@ function Main() {
             <Routes>
                 <Route path="/" element={<App/>}>
                     <Route index element={<HomePage/>}/>
-                    <Route path="ranking" element={<div>랭킹 페이지</div>}/>
+                    <Route path="ranking/:rankingName" element={<RankingPage/>}/>
                     <Route path="my-page" element={<MyPage/>}/>
                     <Route path="character/:characterName" element={<CharacterPage/>}/>
                 </Route>
