@@ -1,28 +1,28 @@
 header {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-bottom: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }
 
 nav li {
-  margin-right: 1rem;
+    margin-right: 1rem;
 }
 
 nav li:last-child {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 nav input[type="text"] {
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
 
 .google-login-button {
@@ -47,12 +47,19 @@ nav input[type="text"] {
 }
 
 h1 {
-  margin: 0;
-  font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-  padding: 1rem;
+    flex: 1;
+    padding: 1rem;
 }
 
 .footer {
@@ -61,10 +68,10 @@ main {
     align-items: center;
     background: #F7F9FA;
     background-size: cover;
-    height: 100px; /* footer 높이를 적절히 설정하세요 */
+    height: 100px;
 }
 
 .footer img {
-    width: 130px; /* 원하는 너비로 설정 */
-    height: auto; /* 비율을 유지하면서 높이를 자동으로 설정 */
+    width: 130px;
+    height: auto;
 }

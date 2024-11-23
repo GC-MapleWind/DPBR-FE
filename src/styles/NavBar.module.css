@@ -1,7 +1,7 @@
 .username {
-    color: rgba(0, 0, 0, 0.54); /* text-black-54 */
-    font-weight: 600; /* font-semibold */
-    font-size: 1.3rem; /* text-sm */
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 600;
+    font-size: 1.3rem;
 }
 
 .logo {
@@ -17,16 +17,16 @@ ul {
 }
 
 .navItem a {
-    color: inherit; /* li의 색상을 상속받음 */
-    text-decoration: none; /* 밑줄 제거 */
+    color: inherit;
+    text-decoration: none;
 }
 
 .navItem a:hover {
-    color: #FF6D6A; /* 호버 상태에서 색상 변경 */
+    color: #FF6D6A;
 }
 
 li {
-    color: rgba(0, 0, 0, 0.54); /* text-black-54 */
-    font-weight: 600; /* font-semibold */
-    font-size: 1.3rem; /* text-sm */
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 600;
+    font-size: 1.3rem;
 }
