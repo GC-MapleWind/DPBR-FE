@@ -24,7 +24,7 @@ const NavBar = () => {
                     <li className={styles.navItem}><Link to="/"><img src="/logo.svg" alt="홈 아이콘"
                                                                      className={styles.logo}/></Link></li>
                     <li className={styles.navItem}><Link to="/ranking/level">레벨 랭킹</Link></li>
-                    <li className={styles.navItem}><Link to="/ranking/combat">전투력 랭킹</Link></li>
+                    <li className={styles.navItem}><Link to="/ranking/combat-power">전투력 랭킹</Link></li>
                     <li className={styles.navItem}><Link to="/ranking/union">유니온 랭킹</Link></li>
                     <li>
                         {username ? (
