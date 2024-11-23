@@ -6,6 +6,7 @@ import App from './components/App';
 import MyPage from "./pages/MyPage.jsx";
 import HomePage from './pages/HomePage';
 import './style.css';
+import CharacterPage from "./pages/CharacterPage.jsx";
 
 function Main() {
     return (
@@ -15,6 +16,7 @@ function Main() {
                     <Route index element={<HomePage/>}/>
                     <Route path="ranking" element={<div>랭킹 페이지</div>}/>
                     <Route path="my-page" element={<MyPage/>}/>
+                    <Route path="character/:characterName" element={<CharacterPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
