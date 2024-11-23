@@ -30,10 +30,20 @@ const CharacterPage = () => {
         fetchCharacterData();
     }, [characterName]);
 
+    const handleUpdate = async (name) => {
+        try {
+            await axios.patch(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/update?name=${name}`);
+            window.location.reload();
+        } catch (error) {
+            console.error('Error updating character:', error);
+        }
+    };
+
     return (
         <div className={styles.characterContainer}>
             {character ? (
                 <>
+                   <button onClick={() => handleUpdate(character.name)} style={{ position: 'absolute', right: '4%', padding: '5px 10px'}}>새로고침</button>
                     <div className={styles.characterTopRow}>
                         <div className={styles.characterDetails}>
                             <img src={character.characterImage} alt="캐릭터 이미지" className={styles.characterImage}/>
