@@ -71,7 +71,7 @@ function HomePage() {
                     </div>
                 )}
                 {character ? (
-                    <div className={styles.characterDetails}>
+                    <div className={styles.characterDetails} onClick={() => window.location.href = `http://localhost:3000/character/${character.name}`}>
                         <h1 className={`h1_5 ${styles.characterHeader}`}>내 캐릭터 정보</h1>
                         <img src={character.characterImage} alt="캐릭터 이미지" className={styles.characterImage}/>
                         <div>
