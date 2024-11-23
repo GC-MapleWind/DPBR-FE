@@ -1,0 +1,42 @@
+.homepageContainer {
+    padding: 20px;
+}
+
+.averageStats {
+    margin-bottom: 20px;
+}
+
+.topCharacters {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.characterImage {
+    margin: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+.characterInfo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.characterInfo p {
+    margin: 5px 0;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+}
+
+.footer img {
+    width: 100%;
+    height: auto;
+}

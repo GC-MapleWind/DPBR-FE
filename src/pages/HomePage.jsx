@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import '../style.css';
+import styles from '../styles/HomePage.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -56,14 +56,14 @@ function HomePage() {
     } : null;
 
     return (
-        <div className="homepage-container">
-            <div className="average-stats">
+        <div className={styles.homepageContainer}>
+            <div className={styles.averageStats}>
                 <div>단풍바람은 <b>{characterCount?.toLocaleString() || 0}</b>명의 용사님들과 함께 하고 있으며,</div>
                 <p>평균 레벨은 <b>{averageLevel}</b> 이고,</p>
                 <p>평균 전투력은 <b>{averageCombatPower?.toLocaleString() || 0}</b> 이고,</p>
                 <p>평균 유니온은 <b>{averageUnionLevel}</b> 입니다.</p>
             </div>
-            <div className="top-characters">
+            <div className={styles.topCharacters}>
                 <div>
                     <h2>학과별 분포</h2>
                     {pieData && <Pie data={pieData} />}
@@ -72,9 +72,9 @@ function HomePage() {
                     <h2>최고 LV 캐릭터</h2>
                     {topLevelCharacter && (
                         <div>
-                            <img src={topLevelCharacter.characterImage} alt="최고 LV 캐릭터 이미지" className="character-image"/>
+                            <img src={topLevelCharacter.characterImage} alt="최고 LV 캐릭터 이미지" className={styles.characterImage}/>
                             <h3>{topLevelCharacter.name}</h3>
-                            <div>
+                            <div className={styles.characterInfo}>
                                 <p>Lv. {topLevelCharacter.level}</p>
                                 <p>{topLevelCharacter.job}</p>
                                 <p><img src={`/world/${topLevelCharacter.world}.svg`} alt="world"/> {topLevelCharacter.world}</p>
@@ -88,9 +88,9 @@ function HomePage() {
                     <h2>최고 전투력 캐릭터</h2>
                     {topCombatCharacter && (
                         <div>
-                            <img src={topCombatCharacter.characterImage} alt="최고 전투력 캐릭터 이미지" className="character-image"/>
+                            <img src={topCombatCharacter.characterImage} alt="최고 전투력 캐릭터 이미지" className={styles.characterImage}/>
                             <h3>{topCombatCharacter.name}</h3>
-                            <div>
+                            <div className={styles.characterInfo}>
                                 <p>Lv. {topCombatCharacter.level}</p>
                                 <p>{topCombatCharacter.job}</p>
                                 <p><img src={`/world/${topCombatCharacter.world}.svg`} alt="world"/> {topCombatCharacter.world}</p>
@@ -104,9 +104,9 @@ function HomePage() {
                     <h2>최고 유니온 캐릭터</h2>
                     {topUnionCharacter && (
                         <div>
-                            <img src={topUnionCharacter.characterImage} alt="최고 유니온 캐릭터 이미지" className="character-image"/>
+                            <img src={topUnionCharacter.characterImage} alt="최고 유니온 캐릭터 이미지" className={styles.characterImage}/>
                             <h3>{topUnionCharacter.name}</h3>
-                            <div>
+                            <div className={styles.characterInfo}>
                                 <p>Lv. {topUnionCharacter.level}</p>
                                 <p>{topUnionCharacter.job}</p>
                                 <p><img src={`/world/${topUnionCharacter.world}.svg`} alt="world"/> {topUnionCharacter.world}</p>

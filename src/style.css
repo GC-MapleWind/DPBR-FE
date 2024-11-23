@@ -117,8 +117,8 @@ button:focus-visible {
 
 .character-image {
     margin: 30px;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 .character-gender {
@@ -127,4 +127,10 @@ button:focus-visible {
 
 .character-details {
     text-align: left;
+}
+
+.top-characters {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
 }

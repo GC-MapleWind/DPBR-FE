@@ -1,0 +1,25 @@
+.character-container {
+    height: 40%;
+}
+
+.character-header {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.character-details {
+    display: flex;
+    align-items: center;
+}
+
+.character-image {
+    margin: 30px;
+    width: 200px;
+    height: 200px;
+}
+
+.character-info {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
