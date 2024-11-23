@@ -68,7 +68,7 @@ function HomePage() {
                     <h2>학과별 분포</h2>
                     {pieData && <Pie data={pieData} />}
                 </div>
-                <div>
+                <div onClick={() => window.location.href = `http://localhost:3000/character/${topLevelCharacter.name}`}>
                     <h2>최고 LV 캐릭터</h2>
                     {topLevelCharacter && (
                         <div>
@@ -84,7 +84,7 @@ function HomePage() {
                         </div>
                     )}
                 </div>
-                <div>
+                <div onClick={() => window.location.href = `http://localhost:3000/character/${topCombatCharacter.name}`}>
                     <h2>최고 전투력 캐릭터</h2>
                     {topCombatCharacter && (
                         <div>
@@ -100,7 +100,7 @@ function HomePage() {
                         </div>
                     )}
                 </div>
-                <div>
+                <div onClick={() => window.location.href = `http://localhost:3000/character/${topUnionCharacter.name}`}>
                     <h2>최고 유니온 캐릭터</h2>
                     {topUnionCharacter && (
                         <div>
