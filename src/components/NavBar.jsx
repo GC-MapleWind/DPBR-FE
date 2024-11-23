@@ -29,7 +29,7 @@ const NavBar = () => {
                     <li>
                         {username ? (
                             <div style={{display: 'flex', alignItems: 'center'}}>
-                                <span className={styles.username}>{username}님</span>
+                                <span className={styles.username}><Link to="/my-page">{username}님</Link></span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <LogoutButton onClick={handleLogout}/>
                             </div>

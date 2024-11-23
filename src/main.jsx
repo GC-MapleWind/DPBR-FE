@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {GoogleOAuthProvider} from '@react-oauth/google';
 import App from './components/App';
+import MyPage from "./pages/MyPage.jsx";
 import HomePage from './pages/HomePage';
 import './style.css';
 
@@ -13,6 +14,7 @@ function Main() {
                 <Route path="/" element={<App/>}>
                     <Route index element={<HomePage/>}/>
                     <Route path="ranking" element={<div>랭킹 페이지</div>}/>
+                    <Route path="my-page" element={<MyPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
