@@ -5,26 +5,29 @@ import {useNavigate} from 'react-router-dom';
 import styles from '../styles/MyPage.module.css';
 
 function HomePage() {
-    const [user, setUser] = useState(null);
-    const [character, setCharacter] = useState(null);
-    const [name, setName] = useState('');
-    const {username} = useAuth();
-    const navigate = useNavigate();
+    const [user, setUser] = useState(null); // 사용자 정보
+    const [character, setCharacter] = useState(null);// 캐릭터 정보
+    const [name, setName] = useState(''); // 캐릭터 이름
+    const {username} = useAuth(); // 사용자 이름
+    const navigate = useNavigate(); // 페이지 이동
 
+    // 사용자의 이름이 없으면 홈으로 이동
     useEffect(() => {
         if (!username) {
             navigate('/');
             return;
         }
 
+        // 사용자 정보를 호출
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('accessToken');
+                const token = localStorage.getItem('accessToken'); // 토큰을 로컬 스토리지에서 가져옴
+                // 사용자 정보를 가져옴
                 const response = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/user/profile`, {
                     headers: {Authorization: `Bearer ${token}`},
                 });
-                setUser(response.data.result);
-                setCharacter(response.data.result.info);
+                setUser(response.data.result); // 사용자 정보를 상태에 저장
+                setCharacter(response.data.result.info); // 캐릭터 정보를 상태에 저장
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
@@ -33,19 +36,22 @@ function HomePage() {
         fetchUserData();
     }, [username, navigate]);
 
+    // 캐릭터 정보 저장
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('accessToken');
+            const token = localStorage.getItem('accessToken'); // 토큰을 로컬 스토리지에서 가져옴
+            // 캐릭터 정보 저장
             await axios.post(
                 `${import.meta.env.VITE_DEFAULT_API_URI}/v1/user/save-character`,
                 {name},
                 {headers: {Authorization: `Bearer ${token}`}}
             );
+            // 사용자 정보를 다시 불러옴
             const response = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/user/profile`, {
                 headers: {Authorization: `Bearer ${token}`},
             });
-            setCharacter(response.data.result.info);
+            window.location.reload(); // 페이지 새로고침
         } catch (error) {
             console.error('Error saving character:', error);
         }

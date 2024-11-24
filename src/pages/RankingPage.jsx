@@ -2,25 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const RankingPage = () => {
-    const { rankingName } = useParams();
-    const [rankingData, setRankingData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
-    const [error, setError] = useState(null); // 에러 상태 추가
+    const { rankingName } = useParams(); // URL 파라미터 값 가져오기
+    const [rankingData, setRankingData] = useState([]); // 랭킹 데이터
+    const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+    const [error, setError] = useState(null); // 에러 상태
 
+    // 랭킹 데이터 가져오기
     useEffect(() => {
         const fetchRankingData = async () => {
-            setIsLoading(true);
-            setError(null);
+            setIsLoading(true); // 로딩 시작
+            setError(null); // 에러 초기화
             try {
-                console.log(rankingName);
+                // 랭킹 데이터 가져오기
                 const response = await fetch(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/ranking/${rankingName}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+
+                // 응답이 성공적이면 데이터를 상태에 저장
                 const data = await response.json();
                 setRankingData(data.result);
             } catch (error) {
-                console.error('Error fetching ranking data:', error);
                 setError('데이터를 가져오는 데 실패했습니다.'); // 에러 메시지 설정
             } finally {
                 setIsLoading(false); // 로딩 종료
@@ -30,13 +29,11 @@ const RankingPage = () => {
         fetchRankingData();
     }, [rankingName]);
 
-    const sortedRankingData = rankingData.sort((a, b) => a.ranking - b.ranking);
-
     return (
         <div>
             {isLoading && <p>로딩 중입니다...</p>} {/* 로딩 상태 표시 */}
             {error && <p style={{ color: 'red' }}>{error}</p>} {/* 에러 메시지 표시 */}
-            {!isLoading && !error && sortedRankingData.length > 0 && (
+            {!isLoading && !error && rankingData.length > 0 && (
                 <table style={{ width: '100%' }}>
                     <thead>
                     <tr>
@@ -50,7 +47,7 @@ const RankingPage = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {sortedRankingData.map((item, index) => (
+                    {rankingData.map((item, index) => (
                         <tr key={index} onClick={() => window.location.href = `http://localhost:3000/character/${item.info.name}`}>
                             <td>{item.ranking}</td>
                             <td><img src={item.info.characterImage} alt={`${item.info.name} 이미지`}/></td>
