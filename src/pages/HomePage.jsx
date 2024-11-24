@@ -7,29 +7,31 @@ import styles from '../styles/HomePage.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function HomePage() {
-    const [characterCount, setCharacterCount] = useState(0);
-    const [majorStatistics, setMajorStatistics] = useState(null);
-    const [averageLevel, setAverageLevel] = useState(0);
-    const [averageCombatPower, setAverageCombatPower] = useState(0);
-    const [averageUnionLevel, setAverageUnionLevel] = useState(0);
-    const [topLevelCharacter, setTopLevelCharacter] = useState(null);
-    const [topCombatCharacter, setTopCombatCharacter] = useState(null);
-    const [topUnionCharacter, setTopUnionCharacter] = useState(null);
+    const [characterCount, setCharacterCount] = useState(0); // 캐릭터 수
+    const [majorStatistics, setMajorStatistics] = useState(null); // 학과별 통계
+    const [averageLevel, setAverageLevel] = useState(0); // 평균 레벨
+    const [averageCombatPower, setAverageCombatPower] = useState(0); // 평균 전투력
+    const [averageUnionLevel, setAverageUnionLevel] = useState(0); // 평균 유니온 레벨
+    const [topLevelCharacter, setTopLevelCharacter] = useState(null); // 최고 레벨 캐릭터
+    const [topCombatCharacter, setTopCombatCharacter] = useState(null); // 최고 전투력 캐릭터
+    const [topUnionCharacter, setTopUnionCharacter] = useState(null); // 최고 유니온 레벨 캐릭터
 
+    // 페이지가 로드될 때 데이터를 가져옴
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [characterCountRes, majorStatisticsRes, averageLevelRes, averageCombatPowerRes, averageUnionLevelRes, topLevelCharacterRes, topCombatCharacterRes, topUnionCharacterRes] = await Promise.all([
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/count`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/user/statistics/major`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/level`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/combat-power`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/union`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/level`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/combat-power`),
-                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/union`)
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/count`), // 캐릭터 수
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/user/statistics/major`), // 학과별 통계
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/level`), // 평균 레벨
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/combat-power`), // 평균 전투력
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/average/union`), // 평균 유니온 레벨
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/level`), // 최고 레벨 캐릭터
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/combat-power`), // 최고 전투력 캐릭터
+                    axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/top/union`) // 최고 유니온 레벨 캐릭터
                 ]);
 
+                // 데이터를 상태에 저장
                 setCharacterCount(characterCountRes.data.result);
                 setMajorStatistics(majorStatisticsRes.data.result);
                 setAverageLevel(averageLevelRes.data.result.average);
@@ -46,6 +48,7 @@ function HomePage() {
         fetchData();
     }, []);
 
+    // pie 차트 데이터
     const pieData = majorStatistics ? {
         labels: Object.keys(majorStatistics),
         datasets: [{

@@ -4,18 +4,19 @@ import {useParams} from 'react-router-dom';
 import styles from '../styles/CharacterPage.module.css';
 
 const CharacterPage = () => {
-    const [character, setCharacter] = useState(null);
-    const [sameWorldCount, setSameWorldCount] = useState(null);
-    const [sameJobCount, setSameJobCount] = useState(null);
-    const [levelPercent, setLevelPercent] = useState(0);
-    const [combatPowerPercent, setCombatPowerPercent] = useState(0);
-    const [unionLevelPercent, setUnionLevelPercent] = useState(0);
-    const {characterName} = useParams();
+    const [character, setCharacter] = useState(null); // 캐릭터 정보
+    const [sameWorldCount, setSameWorldCount] = useState(null); // 동일 월드 캐릭터 수
+    const [sameJobCount, setSameJobCount] = useState(null); // 동일 직업 캐릭터 수
+    const [levelPercent, setLevelPercent] = useState(0); // 레벨 백분율
+    const [combatPowerPercent, setCombatPowerPercent] = useState(0); // 전투력 백분율
+    const [unionLevelPercent, setUnionLevelPercent] = useState(0); //
+    const {characterName} = useParams(); // URL 파라미터를 통해 캐릭터의 이름 가져오기
 
+    // 캐릭터 정보 가져오기
     useEffect(() => {
         const fetchCharacterData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/search?name=${characterName}`);
+                const response = await axios.get(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/info?name=${characterName}`);
                 setCharacter(response.data.result.info);
                 setSameWorldCount(response.data.result.sameWorldCharacterCount);
                 setSameJobCount(response.data.result.sameJobCharacterCount);
@@ -30,6 +31,7 @@ const CharacterPage = () => {
         fetchCharacterData();
     }, [characterName]);
 
+    // 캐릭터 정보 업데이트
     const handleUpdate = async (name) => {
         try {
             await axios.patch(`${import.meta.env.VITE_DEFAULT_API_URI}/v1/character/update?name=${name}`);

@@ -29,6 +29,7 @@ const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
+        {/*@react-oauth/google를 이용해 OAuth 구현*/}
         <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
             <Main/>
         </GoogleOAuthProvider>
